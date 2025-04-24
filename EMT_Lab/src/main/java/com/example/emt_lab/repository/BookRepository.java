@@ -1,6 +1,6 @@
 package com.example.emt_lab.repository;
 
-import com.example.emt_lab.model.Book;
+import com.example.emt_lab.model.domain.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

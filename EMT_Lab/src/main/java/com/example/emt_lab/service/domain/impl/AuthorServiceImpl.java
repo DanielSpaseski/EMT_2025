@@ -1,0 +1,68 @@
+package com.example.emt_lab.service.domain.impl;
+
+import com.example.emt_lab.events.AuthorCreatedEvent;
+import com.example.emt_lab.model.domain.Author;
+import com.example.emt_lab.model.projections.AuthorProjection;
+import com.example.emt_lab.repository.AuthorRepository;
+import com.example.emt_lab.repository.AuthorsPerCountryViewRepository;
+import com.example.emt_lab.service.domain.AuthorService;
+import com.example.emt_lab.service.domain.CountryService;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class AuthorServiceImpl implements AuthorService {
+    private final AuthorRepository authorRepository;
+    private final CountryService countryService;
+
+
+    public AuthorServiceImpl(AuthorRepository authorRepository, CountryService countryService){
+        this.authorRepository = authorRepository;
+        this.countryService = countryService;
+    }
+
+    @Override
+    public List<Author> getAllAuthors() {
+        return authorRepository.findAll();
+    }
+
+    @Override
+    public Optional<Author> getAuthorById(Long id) {
+        return authorRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Author> addAuthor(Author author) {
+        return Optional.of(authorRepository.save(author));
+    }
+
+    @Override
+    public Optional<Author> editAuthor(Long id, Author author) {
+        return authorRepository.findById(id).map(a->{
+            if(author.getCountry()!=null){
+                a.setCountry(author.getCountry());
+            }
+            if(author.getName()!=null){
+                a.setName(author.getName());
+            }
+            if(author.getSurname()!=null){
+                a.setSurname(author.getSurname());
+            }
+            return authorRepository.save(a);
+        });
+    }
+
+    @Override
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AuthorProjection> getAllAuthorNames() {
+        return authorRepository.findAllByNameAndSurname();
+    }
+
+}
