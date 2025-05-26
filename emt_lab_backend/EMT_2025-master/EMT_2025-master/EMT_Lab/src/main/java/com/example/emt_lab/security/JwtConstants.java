@@ -1,0 +1,9 @@
+package com.example.emt_lab.security;
+
+public class JwtConstants {
+    public static final String SECRET_KEY = "317417d9f2f614ab11093e43982a112ea149a98a92194d03fdb6263ec977c0ac99d13b15c4d24bc2261010d8791bf52a244aa76ba69f36bfa0a38b952ff5ead85c9ac0dd31fea893441b8d0eb59ec90ee253fa7ad732854dcd8f85ab8c967917d25fef2bb957bb01a896383f17430abc4bb61fb68c206952d04437c7c42a2c27d56470343e93384a2eb8976b86793ddbaef10bfd3b97b554eb3bcc95b8b4c9375cf28732694bfe8b4fcb2b9de8c96ad8daebcc9813309d0b1bbac166b347f92317fd1b7fb206d6a9d97d9e8c6819b0a51d4b0f44abf0f891c6319035b6a364c0e2bfbee544dd43b5875660e31359469687bb406b9fb3bda9771561a66760b406";
+    public static final Long EXPIRATION_TIME = 864000000L;
+    public static final String HEADER = "Authorization";
+    public static final String TOKEN_PREFIX = "Bearer ";
+
+}
